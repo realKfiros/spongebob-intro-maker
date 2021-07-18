@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "NODE_ENV=production node index.js",
-    "heroku-postbuild": "npm install && cd client && npm install && npm install --dev && npm run build",
+    "heroku-postbuild": "npm install && cd client && npm install && npm install --dev",
     "server": "concurrently \"nodemon index.js\" \"cd client && npm start\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

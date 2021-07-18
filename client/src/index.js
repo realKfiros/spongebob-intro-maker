@@ -9,7 +9,7 @@ window.$ = window.jQuery = jQuery;
 window.url = (endpoint = '/') =>
 {
 	let _url = window.location;
-	return _url.protocol + '//' + process.env.NODE_ENV === 'production' ? _url.host : 'localhost:9000' + endpoint;
+	return process.env.NODE_ENV === 'production' ? _url.host : 'localhost:9000' + endpoint;
 }
 
 window.get = (endpoint = '/', success = () => {}) =>
