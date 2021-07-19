@@ -57,6 +57,19 @@ ffmpeg.setFfmpegPath(ffmpegPath);
 
 router.get('/makeVideo', (req, res) =>
 {
+	let fontSize;
+	switch (req.query.font_size)
+	{
+		case 'small':
+			fontSize = 50;
+			break;
+		case 'large':
+			fontSize = 100;
+			break;
+		default:
+			fontSize = 75;
+			break;
+	}
 	let videoPath = path.join(__dirname, 'assets/template1.mp4');
 	let fontPath = path.join(__dirname, 'assets/font.ttf');
 
@@ -84,7 +97,7 @@ router.get('/makeVideo', (req, res) =>
 					enable: "between(t,0.2,2.5)",
 					fontfile: fontPath,
 					text: line,
-					fontsize: 75,
+					fontsize: fontSize,
 					fontcolor: '#e9efa9',
 					x: '(w-text_w)/2',
 					y: makeY(lines.length, index),
