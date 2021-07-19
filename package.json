@@ -9,17 +9,20 @@
   },
   "scripts": {
     "start": "NODE_ENV=production node index.js",
-    "heroku-postbuild": "npm install && cd client && npm install && npm install --dev",
+    "heroku-postbuild": "npm install && cd client && npm install && npm install --dev && npm run build",
     "server": "concurrently \"nodemon index.js\" \"cd client && npm start\"",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "lint": "eslint ."
   },
   "author": "realkfiros",
   "license": "ISC",
   "devDependencies": {
+    "babel-eslint": "^10.1.0",
     "concurrently": "^6.2.0",
     "eslint": "^7.30.0",
     "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
     "husky": "^7.0.1",
     "nodemon": "^2.0.12"
   },

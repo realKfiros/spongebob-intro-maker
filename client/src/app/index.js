@@ -1,18 +1,17 @@
-import React, {useEffect, useState} from 'react';
+import React, {useMemo, useState} from 'react';
 
 export const App = () =>
 {
 	const [episodeName, setEpisodeName] = useState();
-	const [video, setVideo] = useState();
+	const [linesInput, setLinesInput] = useState();
 
-	useEffect(() =>
+	const lines = useMemo(() =>
 	{
-		if (video)
-		{
-			let mediaElem = document.getElementById("player");
-			mediaElem.load();
-		}
-	}, [video]);
+		if (!linesInput || linesInput < 1)
+			return 1;
+		else
+			return linesInput;
+	}, [linesInput]);
 
 	return <div className="container">
 		<div className="mb-3">
@@ -24,13 +23,23 @@ export const App = () =>
 				value={episodeName}
 				onChange={e => setEpisodeName(e.target.value)}/>
 		</div>
+		<div className="mb-3">
+			<label htmlFor="lines-number" className="form-label">Split into lines</label>
+			<input
+				className="form-control"
+				id="lines-number"
+				type="number"
+				placeholder="Default value: 1"
+				value={linesInput}
+				onChange={e => setLinesInput(parseInt(e.target.value))}/>
+		</div>
 		<a
-			href={window.location.protocol + '//' + url('/api/makeVideo?text=' + episodeName)}
+			href={window.location.protocol + '//' + url('/api/makeVideo?text=' + episodeName + '&lines=' + lines)}
 			download={episodeName + '.mp4'}>
 			<button
 				type="button"
 				className="btn btn-primary">
-				download
+				Generate intro
 			</button>
 		</a>
 	</div>;

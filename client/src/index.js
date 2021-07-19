@@ -10,15 +10,15 @@ window.url = (endpoint = '/') =>
 {
 	let _url = window.location;
 	return (process.env.NODE_ENV === 'production' ? _url.host : 'localhost:9000') + endpoint;
-}
+};
 
-window.get = (endpoint = '/', success = () => {}) =>
+window.get = (endpoint = '/', success = () => undefined) =>
 {
 	let _url = url(endpoint);
 	return $.ajax({
 		url: _url,
 		success
 	});
-}
+};
 
 ReactDOM.render(<App />, document.getElementById("app"));
